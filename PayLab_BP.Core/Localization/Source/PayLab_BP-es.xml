@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="es">
+  <texts>
+    <text name="HomePage" value="Página de inicio" />
+    <text name="About" value="Acerca de" />
+    <text name="WellcomeMessage" value="Bienvenido a WMS!" />
+
+    <text name="FormIsNotValidMessage" value="Formulario no es válido. Por favor, compruebe y corrija los errores." />
+    <text name="TenantNameCanNotBeEmpty" value="Nombre de la compañía no puede estar vacío" />
+
+    <text name="InvalidUserNameOrPassword" value="Usuario o contraseña invalido" />
+    <text name="ThereIsNoTenantDefinedWithName{0}" value="No hay compañía definida con el nombre {0}" />
+    <text name="TenantIsNotActive" value="La compañía {0} no está activa." />
+    <text name="UserIsNotActiveAndCanNotLogin" value="El usuario {0} no está activo y no puede conectarse." />
+    <text name="PleaseEnterLoginInformation" value="Por favor, introduzca la información de inicio de sesión" />
+    <text name="TenancyName" value="Nombre de la compañía" />
+    <text name="UserNameOrEmail" value="Nombre de usuario o correo electrónico" />
+    <text name="Password" value="Contraseña" />
+    <text name="RememberMe" value="Recuérdame" />
+    <text name="LogIn" value="Iniciar sesión" />
+
+    <text name="LoginFailed" value="¡Error de inicio de sesion!" />
+
+    <text name="NameSurname" value="Nombre Apellido" />
+    <text name="UserName" value="Nombre de usuario" />
+    <text name="Name" value="Nombre" />
+    <text name="Surname" value="Apellido" />
+    <text name="EmailAddress" value="Dirección de correo electrónico" />
+
+    <text name="Tenants" value="Compañías" />
+    <text name="SavedSuccessfully" value="Guardado correctamente" />
+    <text name="CreateNewTenant" value="Crear nueva compañía" />
+    <text name="AdminEmailAddress" value="Dirección de correo electrónico del administrador" />
+    <text name="Save" value="Guardar" />
+    <text name="Cancel" value="Cancelar" />
+    <text name="TenantName_Regex_Description" value="El nombre de la compañía debe ser de al menos 2 caracteres, empieza con una letra y continua con una letra, número, guión o un guión bajo." />
+    <text name="DefaultPasswordIs" value="La contraseña por defecto es {0}" />
+    <text name="CanBeEmptyToLoginAsHost" value="Puede estar vacía para iniciar la sesión como anfitrión." />
+    <text name="Register" value="Registro" />
+    <text name="OrLoginWith" value="o iniciar sesión con" />
+    <text name="WaitingForActivationMessage" value="Su cuenta está en espera de ser activada por el administrador del sistema." />
+    <text name="TenantSelection" value="Selección de compañía" />
+    <text name="TenantSelection_Detail" value="Por favor seleccione una de las siguientes compañías." />
+    <text name="Logout" value="Cerrar sesión" />
+
+    <text name="Users" value="Usuarios" />
+    <text name="CreateNewUser" value="Crear nuevo usuario" />
+
+    <text name="ChangePassword" value="Cambiar contraseña" />
+
+
+    <text name="Action" value="Acción" />
+    <text name="ServiceType" value="Tipo de servicio" />
+    <text name="Search" value="Buscar" />
+    <text name="From" value="Desde" />
+    <text name="To" value="Hasta" />
+    <text name="Service" value="Servicio" />
+    <text name="IPAddress" value="Dirección IP Cliente" />
+    <text name="Client" value="Cliente" />
+    <text name="Browser" value="Navegador" />
+    <text name="Time" value="Hora" />
+    <text name="Logs" value="Logs de auditoría" />
+    <text name="Lots" value="Lotes" />
+    <text name="LastName" value="Apellidos" />
+    <text name="RoleType" value="Perfil" />
+    <text name="Tenant" value="Compañía" />
+    <text name="Administrator" value="Administrador" />
+    <text name="Supplier" value="Suplidor" />
+    <text name="Number" value="Número" />
+    <text name="Payments" value="Pagos" />
+    <text name="DateFrom" value="Fecha desde" />
+    <text name="DateTo" value="Fecha hasta" />
+    <text name="IsActive" value="Activo" />
+
+    <text name="TenantIsActiveToggleMessage" value="La compañía ha sido reactivada correctamente" />
+    <text name="TenantIsInactiveToggleMessage" value="La compañía ha sido inactivada correctamente" />
+    <text name="UserIsActiveToggleMessage" value="El usuario ha sido reactivado correctamente" />
+    <text name="UserIsInactiveToggleMessage" value="El usuario ha sido inactivado correctamente" />
+
+    <text name="TransactionNumber" value="Número de transacción" />
+    <text name="ContractNumber" value="Número de contrato" />
+    <text name="Amount" value="Monto" />
+    <text name="Date" value="Fecha" />
+    <text name="PaymentType" value="Tipo de pago" />
+    
+    <text name="ListOfPayments" value="Lista de pagos" />
+    <text name="TodayPayments" value="Pagos de hoy" />
+  </texts>
+</localizationDictionary>

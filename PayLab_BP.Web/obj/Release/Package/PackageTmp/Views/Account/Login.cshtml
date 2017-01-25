@@ -1,0 +1,205 @@
+﻿@using Abp.Web.Mvc.Extensions
+@using Microsoft.Owin.Security
+@model PayLab_BP.Web.Models.Account.LoginFormViewModel
+@section Styles
+{
+    @*
+    @Html.IncludeStyle("~/Views/Account/Login.css")
+    *@
+
+
+}
+@section Scripts
+{
+    @Html.IncludeScript("~/Views/Account/Login.js")
+}
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.6.2.1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Dec 2016 16:50:47 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Login</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/MainTheme/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/Content/MainTheme/css/animate.css" rel="stylesheet">
+    <link href="~/Content/MainTheme/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+                <center><img src="~/App/Main/images/logo-250.png" /></center>
+            </div>
+            <h3>Welcome to PayLab</h3>
+            <p>Credentials</p>
+            <form id="LoginForm" class="form-horizontal" action="@(Url.Action("Login", "Account"))?returnUrl=@(Model.ReturnUrl)" method="POST">
+                @if (Model.IsMultiTenancyEnabled)
+                {
+                    <div class="form-group">
+                        <input id="TenancyName" type="text" class="form-control" placeholder="@L("Supplier")" required maxlength="@PayLab_BP.MultiTenancy.Tenant.MaxTenancyNameLength">
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" id="TenancyName" value="">
+                }
+                <div class="form-group">
+                    <input type="text" class="form-control" id="EmailAddressInput" placeholder="@L("UserNameOrEmail")" required maxlength="@PayLab_BP.Users.User.MaxEmailAddressLength">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="PasswordInput" placeholder="@L("Password")" required maxlength="@PayLab_BP.Users.User.MaxPlainPasswordLength">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="RememberMeInput">
+                            <span class="ripple"></span>
+                            <span class="check"></span> @L("RememberMe")
+                        </label>
+                    </div>
+                </div>
+
+                <input id="ReturnUrlHash" type="hidden" name="returnUrlHash" />
+                <button id="LoginButton" type="submit" class="btn btn-primary block full-width m-b">@L("LogIn")</button>
+
+                @* <a href="#"><small>Forgot password?</small></a>
+            <p class="text-muted text-center"><small>Do not have an account?</small></p>
+            <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>
+                *@
+            </form>
+            @{
+                var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes().ToList();
+            }
+
+            @if (loginProviders.Count > 0)
+            {
+                <p>@L("OrLoginWith"):</p>
+
+
+                using (Html.BeginForm("ExternalLogin", "Account", method: FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                        <input type="hidden" name="provider" value="" />
+
+                    foreach (var provider in loginProviders)
+                    {
+                        <a class="btn btn-default btn-sm social-login-link" title="@provider.AuthenticationType"
+                           data-provider="@provider.AuthenticationType"
+                           href="javascript:;">
+                            <i class="fa fa-@(provider.AuthenticationType.ToLower())"></i> @provider.AuthenticationType
+                        </a>
+                    }
+                }
+            }
+            <p class="m-t"> <small>PayLab &copy; 2017</small> </p>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="~/Content/MainTheme/js/jquery-2.1.1.js"></script>
+    <script src="~/Content/MainTheme/js/bootstrap.js"></script>
+</body>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.6.2.1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Dec 2016 16:50:47 GMT -->
+</html>
+
+
+@*
+
+
+    <div id="LoginArea" class="row">
+        <div class="col-lg-12">
+            <div class="well bs-component">
+                <form id="LoginForm" class="form-horizontal" action="@(Url.Action("Login", "Account"))?returnUrl=@(Model.ReturnUrl)" method="POST">
+                    <fieldset>
+                        <legend>@L("LogIn")</legend>
+
+                        @if (Model.IsMultiTenancyEnabled)
+                        {
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" id="TenancyName" placeholder="@L("TenancyName")" required maxlength="@PayLab_BP.MultiTenancy.Tenant.MaxTenancyNameLength">
+                                    <span class="text-muted">@L("CanBeEmptyToLoginAsHost")</span>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <input type="hidden" id="TenancyName" value="">
+                        }
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control" id="EmailAddressInput" placeholder="@L("UserNameOrEmail")" required maxlength="@PayLab_BP.Users.User.MaxEmailAddressLength">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="password" class="form-control" id="PasswordInput" placeholder="@L("Password")" required maxlength="@PayLab_BP.Users.User.MaxPlainPasswordLength">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="RememberMeInput">
+                                        <span class="ripple"></span>
+                                        <span class="check"></span> @L("RememberMe")
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input id="ReturnUrlHash" type="hidden" name="returnUrlHash" />
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <button id="LoginButton" type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> @L("LogIn")</button>
+                                <a class="btn btn-success" href="@Url.Action("Register")"><i class="fa fa-sign-in"></i> @L("Register")</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                @{
+                    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes().ToList();
+                }
+
+                @if (loginProviders.Count > 0)
+                {
+                    <p>@L("OrLoginWith"):</p>
+                    
+
+                    using (Html.BeginForm("ExternalLogin", "Account", method: FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                        <input type="hidden" name="provider" value="" />
+
+                        foreach (var provider in loginProviders)
+                        {
+                            <a class="btn btn-default btn-sm social-login-link" title="@provider.AuthenticationType"
+                               data-provider="@provider.AuthenticationType"
+                               href="javascript:;">
+                                <i class="fa fa-@(provider.AuthenticationType.ToLower())"></i> @provider.AuthenticationType
+                            </a>
+                        }
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+*@

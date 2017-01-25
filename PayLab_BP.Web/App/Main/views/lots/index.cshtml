@@ -1,0 +1,140 @@
+﻿<div id="app.views.lots.index" ng-controller="app.views.lots.index as vm">
+    <h1>@L("Lots")</h1>
+    <div class="row">
+        <div id="animatedModal" tabindex="-1">
+            <div class="ibox-content p-xl">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2 class="page-header">
+                            <i class="fa fa-lg fa-money"></i> <strong>@L("ListOfPayments")</strong>
+                            <small class="pull-right"></small>
+                        </h2>
+                    </div>
+
+                    <div class="col-sm-6 text-right">
+                        <div id="btn-close-modal" class="text-right close-animatedModal">
+                            <button class="btn btn-danger"><strong>X</strong></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h2 class="page-header lead">
+                            <i class="fa fa-search"></i> Filtro de búsqueda
+                            <small class="pull-right"></small>
+                        </h2>
+
+                        <p><strong>Desde</strong></p>
+                        <div class="input-group" style="width: 250px; margin-right: 10px;">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="date" name="dt_from_payments" class="form-control pull-right" id="dt_from_payments">
+                        </div>
+                        <p><strong>Hasta</strong></p>
+                        <div class="input-group" style="width: 250px; margin-right: 10px;">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="date" name="dt_to_payments" class="form-control pull-right" id="dt_to_payments">
+                        </div>
+                        <br />
+
+                        <button id="btnSearchByDate" class="btn btn-primary fa fa-search">&nbsp;@L("Search")</button>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <div class="table-responsive m-t">
+                                <table id="paymentsTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>@L("TransactionNumber")</th>
+                                            <th>@L("Supplier")</th>
+                                            <th>@L("ContractNumber")</th>
+                                            <th>@L("Amount")</th>
+                                            <th>@L("Date")</th>
+                                            <th>@L("Time")</th>
+                                            <th>@L("PaymentType")</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="paymentsTableBody"></tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <table class="table invoice-total">
+                    <tbody>
+                        <tr>
+                            <td><strong>Cantidad de pagos realizados :</strong></td>
+                            <td id="quantityPayments">0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MONTO TOTAL :</strong></td>
+                            <td id="totalPayments">$0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <br/>
+            <br />
+            <br />
+            <div class="row">
+                <table id="lotsTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>@L("Action")</th>
+                            <th>@L("Number")</th>
+                            <th>@L("Payments")</th>
+                            <th>@L("DateFrom")</th>
+                            <th>@L("DateTo")</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lotsTableBody"></tbody>
+                </table>  
+            </div>
+                
+        </div>
+    </div>
+</div>
+
+<script>
+    var date_today = '@DateTime.Now.Month/@DateTime.Now.Day/@DateTime.Now.Year';
+    var date_today_range = '@DateTime.Now.ToString("MM/dd/yyyy") - @DateTime.Now.ToString("MM/dd/yyyy")';
+    var selected_lot_id = 0;
+
+    function InitDatePicker() {
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+        document.getElementById("dt_from_payments").value = today;
+        document.getElementById("dt_to_payments").value = today;
+    }
+
+
+    function loadPayments(lotId) {
+        selected_lot_id = lotId;
+        angular.element(document.getElementById('app.views.lots.index')).scope().loadPayments(lotId);
+    }
+
+    $(document).ready(function () {
+
+        $('#animatedModal').hide();
+        $('#btnSearchByDate').click(function () {
+            loadPayments(selected_lot_id);
+        });
+        InitDatePicker();
+
+    });
+
+</script>

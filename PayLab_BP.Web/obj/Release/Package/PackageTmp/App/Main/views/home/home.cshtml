@@ -1,0 +1,29 @@
+﻿<div ng-controller="app.views.home as vm">
+    <div class="row">
+        <h1>@L("TodayPayments")</h1>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <table id="paymentsTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>@L("TransactionNumber")</th>
+                                    <th>@L("Supplier")</th>
+                                    <th>@L("ContractNumber")</th>
+                                    <th>@L("Amount")</th>
+                                    <th>@L("Date")</th>
+                                    <th>@L("Time")</th>
+                                    <th>@L("PaymentType")</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentsTableBody"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿<div id="app.views.tenants.index" ng-controller="app.views.logs.index as vm">
+    <h1>@L("Logs")</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <br />
+            <br />
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>@L("From")</strong></p>
+                <div class="input-group text-center" style="width: 250px; margin-right: 10px;">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="date" name="dtFrom" class="form-control pull-right" id="dtFrom">
+                </div>
+
+                <p><strong>@L("To")</strong></p>
+                <div class="input-group text-center" style="width: 250px; margin-right: 10px;">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="date" name="dtTo" class="form-control pull-right" id="dtTo">
+                </div>
+
+                <br/>
+                <button ng-click="getLogs()" id="btnSearchByDate" class="btn btn-primary fa fa-search">&nbsp;@L("Search")</button>
+            </div>
+            <div class="col-md-8">
+                <table id="logsTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>@L("Time")</th>
+                            <th>@L("Service")</th>
+                            <th>@L("Action")</th>
+                            <th>@L("IPAddress")</th>
+                            <th>@L("Client")</th>
+                            <th>@L("Browser")</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logsTableBody"></tbody>
+                </table>
+
+            </div>
+ 
+        </div>
+    </div>
+</div>
+<script>
+    var date_today = '@DateTime.Now.Month/@DateTime.Now.Day/@DateTime.Now.Year';
+    var date_today_range = '@DateTime.Now.ToString("MM/dd/yyyy") - @DateTime.Now.ToString("MM/dd/yyyy")';
+
+    function InitDatePicker() {
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+        document.getElementById("dtFrom").value = today;
+        document.getElementById("dtTo").value = today;
+    }
+
+
+    $(document).ready(function () {
+        InitDatePicker();
+
+    });
+
+</script>

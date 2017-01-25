@@ -1,0 +1,32 @@
+﻿<div id="app.views.tenants.index" ng-controller="app.views.tenants.index as vm">
+    <h1>@L("Tenants")</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <button ng-click="vm.openTenantCreationModal()" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @L("CreateNewTenant")</button>
+            <br />
+            <br />
+            <br />
+            <div class="row">
+                <table id="tenantsTable" class="table table-bordered table-striped table2excel">
+                    <thead>
+                        <tr>
+                            <th>@L("Action")</th>
+                            <th>@L("TenancyName")</th>
+                            <th>@L("Name")</th>
+                            <th>@L("ServiceType")</th>
+                            <th>@L("IsActive")</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tenantsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function Edit(id) {
+        angular.element(document.getElementById('app.views.tenants.index')).scope().Edit(id);
+    }
+
+</script>

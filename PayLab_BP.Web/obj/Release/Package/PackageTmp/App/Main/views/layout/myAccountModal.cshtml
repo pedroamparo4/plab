@@ -1,0 +1,47 @@
+﻿@using Abp.MultiTenancy
+@using PayLab_BP.MultiTenancy
+<div>
+    <form name="tenantCreateForm" role="form" novalidate class="form-validation">
+        <div class="modal-header">
+            <center>
+                <div>
+                    <span><i class="fa fa-user fa-5x"></i></span>
+                </div>
+                <h4 class="modal-title" style="font-size: 16px;">
+                    <b>@L("MyAccount")</b> <span class="label label-primary"></span>
+                </h4>
+            </center>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label>@L("UserName")</label>
+                <p>{{vm.accountInfo.userName}}</p>
+            </div>
+
+            <div class="form-group">
+                <label>@L("Name")</label>
+                <p>{{vm.accountInfo.name}}</p>
+            </div>
+
+            <div class="form-group">
+                <label>@L("Surname")</label>
+                <p>{{vm.accountInfo.surName}}</p>
+            </div>
+
+            <div class="form-group">
+                <label>@L("EmailAddress")</label>
+                <p>{{vm.accountInfo.emailAddress}}</p>
+            </div>
+
+            <a class="btn btn-success btn-outline" ng-click="vm.openChangeMyPasswordModal()">
+                <i class="fa fa-lock"> </i> @L("ChangePassword")
+            </a>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="vm.cancel()">@L("Cancel")</button>
+            <button type="submit" class="btn btn-primary blue" ng-click="vm.save()" ng-disabled="tenantCreateForm.$invalid"><i class="fa fa-save"></i> <span>@L("Save")</span></button>
+        </div>
+    </form>
+</div>
